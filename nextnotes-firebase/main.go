@@ -1,4 +1,4 @@
-package main
+package notes
 
 import (
 	"context"
@@ -6,53 +6,58 @@ import (
 	"html"
 	"log"
 	"net/http"
-	"os"
 
+	"cloud.google.com/go/firestore"
 	firebase "firebase.google.com/go"
-	"github.com/joho/godotenv"
-	"google.golang.org/api/option"
 )
 
 type Note struct {
 	Name string
 }
 
-func main() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
-
+func getClientFirestore() (context.Context, *firestore.Client) {
 	ctx := context.Background()
-	config := &firebase.Config{
-		DatabaseURL: os.Getenv("DATABASE_URL"),
-	}
-	// Fetch the service account key JSON file contents
-	opt := option.WithCredentialsFile("credentials.json")
-
-	app, err := firebase.NewApp(ctx, config, opt)
+	config := &firebase.Config{ProjectID: firestore.DetectProjectID}
+	app, err := firebase.NewApp(ctx, config)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalln(err)
 	}
 
-	client, err := app.Database(ctx)
+	client, err := app.Firestore(ctx)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalln(err)
 	}
-
-	note := Note{
-		Name: "Alice",
-	}
-	if err := client.NewRef("Notes/alice").Set(ctx, note); err != nil {
-		log.Fatal(err)
-	}
+	return ctx, client
 }
 
 func Notes(w http.ResponseWriter, r *http.Request) {
-	name := r.URL.Query().Get("name")
-	fmt.Fprintf(w, "Hello, %s!", html.EscapeString(name))
+	ctx, client := getClientFirestore()
 
-	// post, put
+	switch r.Method {
+	case http.MethodGet:
+		name := r.URL.Query().Get("name")
+		fmt.Fprintf(w, "Hello, %s!", html.EscapeString(name))
+		ref, result, err := client.Collection("notes").Add(ctx, map[string]interface{}{
+			"first": name,
+			"last":  name,
+			"born":  1996,
+		})
+		_ = ref
+		_ = result
+
+		if err != nil {
+			log.Fatalf("Failed adding alovelace: %v", err)
+		}
+	case http.MethodPost:
+		http.Error(w, "403 - Forbidden", http.StatusForbidden)
+	case http.MethodPut:
+		http.Error(w, "403 - Forbidden", http.StatusForbidden)
+	case http.MethodDelete:
+		http.Error(w, "403 - Forbidden", http.StatusForbidden)
+	default:
+		http.Error(w, "405 - Method Not Allowed", http.StatusMethodNotAllowed)
+	}
+
 	// var d struct {
 	// 	Name string `json:"name"`
 	// }
