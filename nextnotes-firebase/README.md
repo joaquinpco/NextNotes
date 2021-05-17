@@ -12,6 +12,7 @@ go run main.go
 
 ## To deploy in Google Cloud Platform Functions
 ```
-cd endpoints
-gcloud functions deploy Routes --runtime go111 --trigger-http --entry-point=HomePage --memory=128MB
+gcloud compute ssl-certificates create nextnotes-cert --domains nextnotes-92abf-default-rtdb.europe-west1.firebaseio.com
+gcloud compute ssl-certificates list
+gcloud functions deploy Notes --runtime go113 --trigger-http --entry-point=Notes --memory=128MB
 ```
