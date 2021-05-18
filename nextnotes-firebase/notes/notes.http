@@ -1,0 +1,34 @@
+@host = http://localhost:5000
+@noteIdExample = 
+
+GET {{host}}/notes HTTP/1.1
+
+###
+
+GET {{host}}/notes?id={{noteIdExample}} HTTP/1.1
+
+###
+
+POST {{host}}/notes HTTP/1.1
+content-type: application/json
+
+{
+  "Name": "example",
+	"Colour": "#FFFFFF",
+	"Text": "example text"
+}
+
+###
+
+PUT {{host}}/notes?id={{noteIdExample}} HTTP/1.1
+content-type: application/json
+
+{
+  "Name": "example update",
+	"Colour": "#123456",
+	"Text": "example text update"
+}
+
+###
+
+DELETE {{host}}/notes?id={{noteIdExample}} HTTP/1.1
