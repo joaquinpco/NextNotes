@@ -2,14 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:nextnotes/routes/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
  
-Future<void> main() async {
-
-  WidgetsFlutterBinding().ensureFrameCallbacksRegistered();
-
-  await Firebase.initializeApp();
-
+void main() {
   runApp(MyApp()); 
-  
 }
  
 class MyApp extends StatelessWidget {
@@ -19,6 +13,10 @@ class MyApp extends StatelessWidget {
       title: 'NextNotes',
       initialRoute: '/',
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.indigo,
+        brightness: Brightness.dark,
+      ),
       routes: getApplicationRoutes(), 
     );
   }
