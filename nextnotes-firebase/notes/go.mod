@@ -1,9 +1,8 @@
-module guilogar.com/nextnotes
+module guilogar.com/nextnotes/notes
 
 go 1.17
 
 require (
-	cloud.google.com/go v0.82.0 // indirect
 	cloud.google.com/go/firestore v1.5.0
 	cloud.google.com/go/storage v1.15.0 // indirect
 	firebase.google.com/go v3.13.0+incompatible
@@ -14,6 +13,6 @@ require (
 	golang.org/x/sys v0.0.0-20210514084401-e8d321eab015 // indirect
 	golang.org/x/tools v0.1.1 // indirect
 	google.golang.org/api v0.46.0
-	google.golang.org/genproto v0.0.0-20210518161634-ec7691c0a37d // indirect
+	google.golang.org/genproto v0.0.0-20210517163617-5e0236093d7a // indirect
 	google.golang.org/grpc v1.37.1 // indirect
 )

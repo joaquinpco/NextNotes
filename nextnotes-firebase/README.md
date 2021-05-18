@@ -1,23 +1,27 @@
 # Example for backend with go and gin framework
 
 ## Install dependencies
-```
+
+```bash
 go mod tidy
 ```
 
 ## Run project
-```
+
+```bash
 go run main.go
 ```
 
 ## To deploy in Google Cloud Platform Functions
-```
+
+```bash
 cd notes
 gcloud functions deploy Notes --runtime go113 --trigger-http --entry-point=Notes --memory=128MB
 ```
 
 ### Credentials to run in local
-```
+
+```json
 You need the file credentials.json with credentials of your project firebase.
 Example of file:
 {
@@ -35,9 +39,10 @@ Example of file:
 ```
 
 ## Test in local
-```
+
+```bash
 code ext install humao.rest-client
 go run main.go
 code nextnotes-firebase/notes/note.http
-enjoy!
+#enjoy!
 ```
