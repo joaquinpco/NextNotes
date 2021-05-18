@@ -1,5 +1,5 @@
 @host = http://localhost:5000
-@noteIdExample = 
+@noteIdExample = ermp3LKGAhhGdv2hlZIk
 
 GET {{host}}/notes HTTP/1.1
 
@@ -13,9 +13,9 @@ POST {{host}}/notes HTTP/1.1
 content-type: application/json
 
 {
-  "Name": "example",
+  "Name": "joaquin",
 	"Colour": "#FFFFFF",
-	"Text": "example text"
+	"Text": "joaquin text"
 }
 
 ###

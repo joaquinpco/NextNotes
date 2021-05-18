@@ -22,7 +22,7 @@ func getClientFirestore() (context.Context, *firestore.Client) {
 	var app *firebase.App
 	var err error
 
-	if true {
+	if false {
 		config := &firebase.Config{ProjectID: firestore.DetectProjectID}
 		app, err = firebase.NewApp(ctx, config)
 	} else {
