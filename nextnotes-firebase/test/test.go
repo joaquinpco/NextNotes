@@ -1,4 +1,4 @@
-package notes
+package test
 
 import (
 	"context"
