@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:nextnotes/pages/notes_pages.dart';
 import 'package:nextnotes/pages/profile_page.dart';
+import 'package:nextnotes/res/CustomColors.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required User user})
@@ -61,6 +62,11 @@ class _HomePageState extends State<HomePage> {
            label: 'Profile'
          )
        ],
+     ),
+     floatingActionButton: FloatingActionButton(
+       onPressed: (){} ,
+       child: Icon(Icons.add),
+       backgroundColor: CustomColors.firebaseGrey,
      ),
    );    
   }

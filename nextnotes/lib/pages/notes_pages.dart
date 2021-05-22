@@ -11,9 +11,8 @@ class _NotesPageState extends State<NotesPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-       child: Center(
-         child: Text('Notes'),
-        ),
+     
+      
     );
   }
 }
