@@ -1,0 +1,3 @@
+[submodule "NextNotesHeroku"]
+	path = NextNotesHeroku
+	url = git@github.com:joaquinpco/NextNotesHeroku.git
