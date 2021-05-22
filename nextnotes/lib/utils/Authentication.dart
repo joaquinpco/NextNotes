@@ -59,9 +59,9 @@ class Authentication {
 
   }
 
-    static Future<void> signOut({required BuildContext context}) async {
-        final GoogleSignIn googleSignIn = GoogleSignIn();
-
+  static Future<void> signOut({required BuildContext context}) async {
+    final GoogleSignIn googleSignIn = GoogleSignIn();
+    
     try {
       if (!kIsWeb) {
         await googleSignIn.signOut();

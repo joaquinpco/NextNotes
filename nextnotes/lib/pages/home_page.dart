@@ -10,17 +10,24 @@ class HomePage extends StatefulWidget {
 
   final User _user;
 
+  User get defaultUser => _user;
+
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
 
+
+  late User _user;
+
+  @override
+  void initState() { 
+    _user = widget._user;
+    super.initState();
+  }
+
   int _currentIndex = 0;
-  final List<Widget> _children = [
-    NotesPage(),
-    ProfilePage()
-  ];
 
   void onTabTapped(int index) {
    setState(() {
@@ -30,6 +37,12 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+
+    final List<Widget> _children = [
+      NotesPage(),
+      ProfilePage(user: widget.defaultUser,)
+    ];
+
     return Scaffold(
      appBar: AppBar(
        title: Text('NextNotes'),
@@ -40,7 +53,7 @@ class _HomePageState extends State<HomePage> {
        onTap: onTabTapped, // this will be set when a new tab is tapped
        items: [
          BottomNavigationBarItem(
-           icon: new Icon(Icons.notes),
+           icon: Icon(Icons.notes),
            label: 'Notes',
          ),
          BottomNavigationBarItem(
