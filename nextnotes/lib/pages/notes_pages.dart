@@ -12,7 +12,8 @@ class _NotesPageState extends State<NotesPage> {
   Widget build(BuildContext context) {
     return Container(
        child: Center(
-         child: Text('Notes'),),
+         child: Text('Notes'),
+        ),
     );
   }
 }
