@@ -36,12 +36,30 @@ class _HomePageState extends State<HomePage> {
    });
   }
 
+  bool isNoteTab() => _currentIndex == 0;
+
+  void pressedFloatingButton() {
+    setState(() {
+      if(isNoteTab()) {
+        print("Notes");
+      }
+      else {
+        print("Settings");
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
 
     final List<Widget> _children = [
       NotesPage(),
       ProfilePage(user: widget.defaultUser,)
+    ];
+
+    final List<Icon> _icons = [
+      Icon(Icons.add),
+      Icon(Icons.settings)
     ];
 
     return Scaffold(
@@ -64,8 +82,8 @@ class _HomePageState extends State<HomePage> {
        ],
      ),
      floatingActionButton: FloatingActionButton(
-       onPressed: (){} ,
-       child: Icon(Icons.add),
+       onPressed: pressedFloatingButton,
+       child: _icons[_currentIndex],
        backgroundColor: CustomColors.firebaseGrey,
      ),
    );    
