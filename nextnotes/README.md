@@ -17,6 +17,15 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Run project
 
+- Write an env file. Declarating the pair key/value shows above:
+
+Key  | Value
+------------- | -------------
+HOST  | localhost
+PORT  | 8001
+LIVE  | false
+
+
 ```bash
 flutter run -d chrome --web-port 8080
 ```

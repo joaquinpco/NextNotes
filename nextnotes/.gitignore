@@ -46,3 +46,6 @@ app.*.map.json
 /android/app/release
 properties.json
 client.json
+
+# Environment attributes
+/assets/.env
