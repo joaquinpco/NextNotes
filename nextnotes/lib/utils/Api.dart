@@ -8,11 +8,11 @@ class Api {
     return await http.get(url);
   }
 
-  static Future<http.Response?> httpPost(Uri url, HashMap<String, String> body) async {
+  static Future<http.Response?> httpPost(Uri url, Map<String, dynamic> body) async {
     return await http.post(url, body: body);
   }
 
-  Uri getUri(String path, { Map<String, dynamic?>? params}) {
+  Uri getUri(String path, { Map<String, dynamic>? params}) {
     return params == null ? Uri.http(
       "${DotEnv.env['HOST']}:${DotEnv.env['PORT']}", 
       path

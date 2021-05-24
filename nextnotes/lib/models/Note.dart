@@ -2,29 +2,35 @@ import 'package:flutter/material.dart';
 
 class Note {
   
-  String? name;
-  String? text;
-  String? userId;
-  Color colour;
+  final String? Name;
+  final String? Text;
+  final String? ID;
+  final String? Colour;
 
-  Note(this.name, this.text, this.colour);
+  Note({
+    required this.Name, 
+    required this.Text, 
+    required this.ID, 
+    required this.Colour
+    });
 
-  get title => name;
-  get content => text;
-  get noteColor => colour;
-  get userUUID => this.userId; 
-  set title(title) => name = title;
-  set content(content) => text = content;
-  set noteColor(noteColor) => colour = noteColor; 
-  set userUUID(userId) => this.userId; 
+
+  factory Note.fromJson(Map<String, dynamic> parsedJSON) {
+    return new Note(
+      Name: parsedJSON['Name'],
+      Text: parsedJSON['Text'],
+      ID: parsedJSON['ID'],
+      Colour: parsedJSON['Colour']
+    );
+  }
 
   @override
   String toString() {
     return {
-      'Name': name,
-      'Text': text,
-      'Colour': colour,
-      'UserId': userId,
+      'Name': Name,
+      'Text': Text,
+      'ID': ID,
+      'Colour': Colour,
     }.toString();
   }
 }
