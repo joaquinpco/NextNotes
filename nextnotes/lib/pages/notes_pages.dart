@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 import 'dart:convert';
 import 'package:nextnotes/models/Note.dart';
 import 'package:nextnotes/res/CustomColors.dart';
@@ -29,8 +28,7 @@ class _NotesPageState extends State<NotesPage> {
       future: _retrieveAllNotesFromDatabase(),
       builder: (ctx, snapshot) {
         List<Widget> items = [];
-        snapshot.data?.forEach((element) { 
-          print(element); 
+        snapshot.data?.forEach((element) {
           items.add(Card(
               color: Color(
                 CustomColors.getColorFromHex(
