@@ -10,6 +10,12 @@ class Api {
     return await http.post(url, body: body);
   }
 
+  static Future<http.Response?> httpDelete(Uri url) async {
+    String urlWithParams = url.toString();
+    print(urlWithParams);
+    return await http.delete(Uri.parse(urlWithParams),);
+  }
+
   Uri getUri(String path, { Map<String, dynamic>? params}) {
     return params == null ? Uri.http(
       "${DotEnv.env['HOST']}:${DotEnv.env['PORT']}", 

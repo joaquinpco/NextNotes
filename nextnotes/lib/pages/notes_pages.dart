@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:nextnotes/models/Note.dart';
+import 'package:nextnotes/pages/edit_page.dart';
 import 'package:nextnotes/res/CustomColors.dart';
 import 'package:nextnotes/utils/Api.dart';
 
@@ -20,6 +21,12 @@ class _NotesPageState extends State<NotesPage> {
     dynamic response = await Api.httpGet(url);
     final parsed = jsonDecode(response.body).cast<Map<String, dynamic>>();
     return parsed.map<Note>((json) => Note.fromJson(json)).toList();
+  }
+
+  Future<void> _deleteNote(String? id) async {
+    Map<String, dynamic> param = { "id" : id };
+    Uri url = Api().getUri("/notes", params: param);
+    await Api.httpDelete(url);
   }
 
   @override
@@ -51,7 +58,9 @@ class _NotesPageState extends State<NotesPage> {
                           Icons.edit, 
                           color: CustomColors.firebaseGrey,
                         ),
-                        onPressed: () {/* ... */},
+                        onPressed: () {
+                          
+                        },
                       ),
                       const SizedBox(width: 8),
                       TextButton(
@@ -59,7 +68,14 @@ class _NotesPageState extends State<NotesPage> {
                           Icons.delete,
                           color: Colors.redAccent,
                         ),
-                        onPressed: () {/* ... */},
+                        onPressed: () async {
+                          await _deleteNote(
+                            element.ID
+                          );
+                          setState(() {
+                            _retrieveAllNotesFromDatabase();
+                          });
+                        },
                       ),
                       const SizedBox(width: 8),
                     ],
