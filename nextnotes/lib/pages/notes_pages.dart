@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:nextnotes/models/Note.dart';
@@ -47,8 +48,8 @@ class _NotesPageState extends State<NotesPage> {
                 children: <Widget>[
                   ListTile(
                     leading: Icon(Icons.album),
-                    title: Text(element.Text.toString()),
-                    subtitle: Text(element.Name.toString())
+                    title: Text(element.Name.toString()),
+                    subtitle: Text(element.Text.toString())
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -59,7 +60,12 @@ class _NotesPageState extends State<NotesPage> {
                           color: CustomColors.firebaseGrey,
                         ),
                         onPressed: () {
-                          
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => EditPage(note: element,)),
+                          ).then((value) => setState(() {
+                            _retrieveAllNotesFromDatabase();
+                          }));
                         },
                       ),
                       const SizedBox(width: 8),

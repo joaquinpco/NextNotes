@@ -12,9 +12,12 @@ class Api {
 
   static Future<http.Response?> httpDelete(Uri url) async {
     String urlWithParams = url.toString();
-    print(urlWithParams);
     return await http.delete(Uri.parse(urlWithParams),);
   }
+
+  static Future<http.Response?> httpPut(Uri url, String body) async { 
+    return await http.put(url, body: body);
+  } 
 
   Uri getUri(String path, { Map<String, dynamic>? params}) {
     return params == null ? Uri.http(

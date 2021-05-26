@@ -6,13 +6,15 @@ class Note {
   final String? Text;
   final String? ID;
   final String? Colour;
+  final String? UserId;
 
   Note({
     required this.Name, 
     required this.Text, 
     required this.ID, 
-    required this.Colour
-    });
+    required this.Colour,
+    required this.UserId
+  });
 
 
   factory Note.fromJson(Map<String, dynamic> parsedJSON) {
@@ -20,7 +22,8 @@ class Note {
       Name: parsedJSON['Name'],
       Text: parsedJSON['Text'],
       ID: parsedJSON['ID'],
-      Colour: parsedJSON['Colour']
+      Colour: parsedJSON['Colour'],
+      UserId: parsedJSON['UserId']
     );
   }
 
@@ -31,6 +34,7 @@ class Note {
       'Text': Text,
       'ID': ID,
       'Colour': Colour,
+      'UserId': UserId
     }.toString();
   }
 }
