@@ -20,7 +20,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-
   late User _user;
 
   @override
@@ -37,6 +36,34 @@ class _HomePageState extends State<HomePage> {
    });
   }
 
+  showAlertDialog(BuildContext context) {
+    // set up the button
+    Widget okButton = TextButton(
+      child: Text("OK"),
+      onPressed: () { Navigator.pop(context); },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Authors"),
+      content: Text(
+        "Frontend: José Joaquín Pérez-Calderón Ortiz\n\n" +
+        "Backend: Guillermo López García"
+        ),
+      actions: [
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
   bool isNoteTab() => _currentIndex == 0;
 
   void pressedFloatingButton() {
@@ -44,11 +71,11 @@ class _HomePageState extends State<HomePage> {
       if(isNoteTab()) {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => PostPage()),
+          MaterialPageRoute(builder: (context) => PostPage(user: _user,)),
         );
       }
       else {
-        print("Settings");
+        showAlertDialog(context);
       }
     });
   }
@@ -57,7 +84,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
 
     final List<Widget> _children = [
-      NotesPage(),
+      NotesPage(user: _user,),
       ProfilePage(user: widget.defaultUser,)
     ];
 

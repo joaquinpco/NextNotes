@@ -42,6 +42,7 @@ class _EditPageState extends State<EditPage> {
       _name, _text.toString(), note.ID.toString(), 
       _color.toString(), note.UserId.toString()
     );
+    Navigator.pop(context);
   }
 
   Widget _createNotesTitle() {
@@ -102,7 +103,7 @@ class _EditPageState extends State<EditPage> {
         onSurface: CustomColors.firebaseOrange,
       ),
       onPressed: updateNote,
-      child: Text('TextButton'),
+      child: Text('Edit Note'),
     );
   }
 

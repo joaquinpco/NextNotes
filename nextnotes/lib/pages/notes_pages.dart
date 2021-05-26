@@ -7,7 +7,9 @@ import 'package:nextnotes/res/CustomColors.dart';
 import 'package:nextnotes/utils/Api.dart';
 
 class NotesPage extends StatefulWidget {
-  NotesPage({Key? key}) : super(key: key);
+  NotesPage({Key? key, required User user}) : _user=user, super(key: key);
+
+  User _user;
 
   @override
   _NotesPageState createState() => _NotesPageState();
@@ -17,7 +19,7 @@ class _NotesPageState extends State<NotesPage> {
 
 
   Future<List<Note>> _retrieveAllNotesFromDatabase() async {
-    Map<String, dynamic> map = { "userId" : "1" };
+    Map<String, dynamic> map = { "userId" : widget._user.uid };
     Uri url = Api().getUri("/notes", params: map);    
     dynamic response = await Api.httpGet(url);
     final parsed = jsonDecode(response.body).cast<Map<String, dynamic>>();

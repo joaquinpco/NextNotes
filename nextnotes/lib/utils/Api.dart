@@ -6,7 +6,7 @@ class Api {
     return await http.get(url);
   }
 
-  static Future<http.Response?> httpPost(Uri url, Map<String, dynamic> body) async {
+  static Future<http.Response?> httpPost(Uri url, String body) async {
     return await http.post(url, body: body);
   }
 
@@ -17,7 +17,7 @@ class Api {
 
   static Future<http.Response?> httpPut(Uri url, String body) async { 
     return await http.put(url, body: body);
-  } 
+  }
 
   Uri getUri(String path, { Map<String, dynamic>? params}) {
     return params == null ? Uri.http(
