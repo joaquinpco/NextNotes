@@ -25,7 +25,10 @@ HOST  | localhost
 PORT  | 8001
 LIVE  | false
 
-
 ```bash
 flutter run -d chrome --web-port 8080
+```
+
+```bash
+flutter emulators --launch Pixel_3a_API_30_x86
 ```
