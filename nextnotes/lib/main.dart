@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:nextnotes/routes/routes.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
-Future main() async{
+Future<void> main() async{
   await DotEnv.load(fileName: ".env");
-  runApp(MyApp()); 
+  runApp(MyApp());
 }
- 
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.indigo,
         brightness: Brightness.dark,
       ),
-      routes: getApplicationRoutes(), 
+      routes: getApplicationRoutes(),
     );
   }
 }
